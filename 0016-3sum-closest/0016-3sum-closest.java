@@ -8,10 +8,9 @@ class Solution {
             while(j<k){
                 int sum = nums[i]+nums[j]+nums[k];
                 if(Math.abs(target - sum) < distance){
-                    // while(j<k && nums[j] == nums[j+1]) j++;
-                    // while(j<k && nums[k] == nums[k-1]) k--;
                     distance = Math.abs(target - sum);
                     closest = sum;
+                    // j++; k--;
                 } else if(sum == target) {
                     return sum;
                 } else if(sum<target) {
