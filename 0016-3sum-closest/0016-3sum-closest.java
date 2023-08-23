@@ -11,7 +11,8 @@ class Solution {
                     distance = Math.abs(target - sum);
                     closest = sum;
                     // j++; k--;
-                } else if(sum == target) {
+                }
+                if(sum == target) {
                     return sum;
                 } else if(sum<target) {
                     j++;
