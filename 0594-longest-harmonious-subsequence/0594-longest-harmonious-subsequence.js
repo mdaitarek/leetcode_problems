@@ -11,7 +11,10 @@ var findLHS = function(nums) {
             max = Math.max(max, (r-l+1));
         }
         if(diff <= 1) r++;
-        else l++;
+        else {
+            l++; 
+            r=l+1;
+        }
     }
     return max;
 };
