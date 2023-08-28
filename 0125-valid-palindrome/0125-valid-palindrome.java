@@ -23,6 +23,10 @@ class Solution {
     //     }
     //     return true;
     // }
+    
+    /**
+        Best Solution
+    */
 
     public boolean isPalindrome(String s) {
         if(s.isEmpty()) return true;
