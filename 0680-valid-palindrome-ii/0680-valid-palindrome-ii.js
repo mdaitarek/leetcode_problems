@@ -9,7 +9,7 @@ var isPallindrome = function (s, i, j, count) {
         if(s[i] === s[j]){
             i++; j--;
         } else
-            return isPallindrome(s, i, j-1, count+1) || isPallindrome(s,i+1, j, count+1);
+            return isPallindrome(s, i, j-1, count+1) || isPallindrome(s, i+1, j, count+1);
     }
     return true;
 }
