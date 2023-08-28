@@ -4,24 +4,12 @@
  */
 
 var isPallindrome = function (s, i, j, count) {
+    if(count > 1) return false;
     while(i<j){
         if(s[i] === s[j]){
             i++; j--;
-        } else {
-            if(count > 0){
-                return false;
-            } else if(i+1===j){
-                return true;
-            } else if( s[i+1] === s[j] && s[i] === s[j-1]) {
-                return isPallindrome(s, i, j-1, count+1) || isPallindrome(s,i+1, j, count+1);
-            } else if(s[i+1] === s[j]){
-                i++; count++;
-            } else if(s[i] === s[j-1]){
-                j--; count++;
-            } else {
-                return false;
-            }
-        }
+        } else
+            return isPallindrome(s, i, j-1, count+1) || isPallindrome(s,i+1, j, count+1);
     }
     return true;
 }
