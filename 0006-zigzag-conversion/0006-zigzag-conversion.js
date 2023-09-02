@@ -1,22 +1,17 @@
-/**
- * @param {string} s
- * @param {number} numRows
- * @return {string}
- */
 var convert = function(s, numRows) {
-    let i=0, n=s.length, row=0, col=0, count=0, rowCol = false;
-    const twoDim = [];
-    while(i<n){
-        if(!twoDim[row]) twoDim[row] = [];
-        twoDim[row][col] = s[i];
-        if(!rowCol){
-            row++;
-        } else {
-            row--;
-            col++;
-        }
-        i++;
-        if(i%(numRows-1) === 0) rowCol = !rowCol;
+    if (numRows === 1) {
+        return s;
     }
-    return twoDim.map(arr => arr.join("")).join("");
-};
+    let result = '';
+    const n = s.length;
+    const cycleLen = 2 * numRows - 2;
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j + i < n; j += cycleLen) {
+            result += s[j + i];
+            if (i !== 0 && i !== numRows - 1 && j + cycleLen - i < n) {
+                result += s[j + cycleLen - i];
+            }
+        }
+    }
+    return result;
+}
