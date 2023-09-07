@@ -4,8 +4,5 @@
  */
 var addDigits = function(num) {
     if(num<10) return num;
-    while(num>=10){
-        num = String(num).split("").reduce((total, digit)=> total+=Number(digit), 0);
-    }
-    return num;
+    return num%9 === 0 ? 9 : num%9;
 };
