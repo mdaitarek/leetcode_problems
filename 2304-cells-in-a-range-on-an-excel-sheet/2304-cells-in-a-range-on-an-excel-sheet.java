@@ -1,15 +1,20 @@
 class Solution {
     public List<String> cellsInRange(String s) {
-      char initCol = s.charAt(0);
-      char finalCol = s.charAt(3);
-      char initRow = s.charAt(1);
-      char finalRow = s.charAt(4);
-      List<String> list = new ArrayList<String>();
-      for(char i=initCol; i<=finalCol; i++){
-        for(char j=initRow; j<=finalRow; j++){
-          list.add(i+""+j);
+        List<String> ans = new ArrayList<>();
+        
+        char startRow = s.charAt(0);
+        char startCol = s.charAt(1);
+        char endRow = s.charAt(3);
+        char endCol = s.charAt(4); 
+
+        while(startRow <= endRow) {
+            while(startCol <= endCol) {
+                ans.add(startRow + "" + startCol);
+                startCol++;
+            }
+            startCol = s.charAt(1);
+            startRow++;
         }
-      }
-      return list;
+        return ans;
     }
 }
