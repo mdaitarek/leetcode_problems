@@ -8,11 +8,14 @@ var decodeMessage = function(key, message) {
     for(let char of key)
         if(char !== ' ' && !decodeKey.includes(char))
             decodeKey+=char;
+    
     let decodedMessage = "";
+
     for(let char of message){
-        let index = decodeKey.indexOf(char);
-        if(index === -1) decodedMessage+=' ';
-        else decodedMessage+=alphabet[index];
+        if(char === ' ') decodedMessage+=' ';
+        else { 
+            decodedMessage+=alphabet[decodeKey.indexOf(char)]
+        };
     }
     return decodedMessage;
 };
