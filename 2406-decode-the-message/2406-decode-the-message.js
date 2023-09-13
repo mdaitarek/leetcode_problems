@@ -4,15 +4,15 @@
  * @return {string}
  */
 var decodeMessage = function(key, message) {
-    let a = 97, set = {};
+    let alphabet= "abcdefghijklmnopqrstuvwxyz", decodeKey = "";
     for(let char of key)
-        if(char !== ' ' && !set[char])
-            set[char] = String.fromCharCode(a++);
-    let str = "";
-    for(let char of message)
-        if(char !== ' ')
-            str+=set[char];
-        else
-            str+=char;
-    return str;
+        if(char !== ' ' && !decodeKey.includes(char))
+            decodeKey+=char;
+    let decodedMessage = "";
+    for(let char of message){
+        let index = decodeKey.indexOf(char);
+        if(index === -1) decodedMessage+=' ';
+        else decodedMessage+=alphabet[index];
+    }
+    return decodedMessage;
 };
