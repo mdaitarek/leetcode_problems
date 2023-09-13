@@ -14,11 +14,30 @@ var isSelfDividing = function(number){
 }
 
 var selfDividingNumbers = function(left, right) {
-  const selfDividingNumbers = [];
-    while(left<=right){
-      if(isSelfDividing(left))
-        selfDividingNumbers.push(left);
-      left++;
+   const result = [];
+    const parseNum = (num) => {
+        let copyNum = num;
+
+        while (num > 0) {
+            if (copyNum % (num % 10) !== 0) {
+                return false;
+            }
+
+            num = Math.floor(num / 10);
+        }
+
+        return true;
     }
-    return selfDividingNumbers;
+
+    while (left <= right) {
+        const isFit = parseNum(left);
+
+        if (isFit) {
+            result.push(left);
+        }
+
+        left++;
+    }
+
+    return result;
 };
