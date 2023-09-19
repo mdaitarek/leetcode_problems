@@ -11,8 +11,6 @@ class Solution {
         if(!map.containsKey(result[i])) map.put(result[i], i);
       }
       
-      // System.out.println(map);
-
       for(int i=0; i<result.length; i++){
         result[i] = map.get(nums[i]);
       }
