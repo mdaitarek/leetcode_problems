@@ -1,30 +1,18 @@
 class Solution {
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
-        List<List<Integer>> result = new ArrayList<>();
-        for(int i=0; i<groupSizes.length; i++){
-          List<Integer> list = map.getOrDefault(groupSizes[i], new ArrayList<>());
-          list.add(i);
-          map.put(groupSizes[i], list);
+        List<List<Integer>> res = new ArrayList<>();
+        int n = groupSizes.length;
+        List<Integer> arr[] = new ArrayList[n+1];
+        for(int i = 1; i <= n; i++)
+            arr[i] = new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            int x = groupSizes[i];
+            arr[x].add(i);
+            if(arr[x].size() == x){
+                res.add(arr[x]);
+                arr[x] = new ArrayList<>();
+            }   
         }
-
-        for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()){
-          int size = entry.getKey();
-          List<Integer> list = entry.getValue();
-          List<Integer> resultList = new ArrayList<>();
-          int count = 0;
-          for(int i=0; i<list.size(); i++){
-            if(count >= size){
-              count = 0;
-              result.add(resultList);
-              resultList = new ArrayList<>();
-            }
-            resultList.add(list.get(i));
-            count++;
-          }
-          result.add(resultList);
-        }
-
-        return result;
+        return res;
     }
 }
