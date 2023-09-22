@@ -5,12 +5,12 @@
 var rearrangeArray = function(nums) {
     const result = [];
     let positive = 0, negative = 1;
-    for(const num of nums){
-        if(num > 0){
-            result[positive] = num;
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] > 0){
+            result[positive] = nums[i];
             positive+=2;
         } else {
-            result[negative] = num;
+            result[negative] = nums[i];
             negative+=2;
         }
     }
