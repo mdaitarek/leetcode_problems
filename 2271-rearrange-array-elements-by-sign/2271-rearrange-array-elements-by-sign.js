@@ -3,16 +3,17 @@
  * @return {number[]}
  */
 var rearrangeArray = function(nums) {
-    const result = new Array(nums.length);
-    let positive = 0, negative = 1;
-    for(let i=0; i<nums.length; i++){
-        if(nums[i] > 0){
-            result[positive] = nums[i];
-            positive+=2;
-        } else {
-            result[negative] = nums[i];
-            negative+=2;
+    let i=0, j=1;
+    let res=[];
+
+    for(let n of nums){
+        if(n>0){//if n is positive number new arrary res[] first number is n
+            res[i]=n
+            i+=2;
+        } else{
+            res[j]=n;
+            j+=2;
         }
     }
-    return result;
+    return res;
 };
