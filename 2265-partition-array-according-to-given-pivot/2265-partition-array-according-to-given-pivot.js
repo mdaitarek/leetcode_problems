@@ -10,5 +10,5 @@ var pivotArray = function(nums, pivot) {
         else if(num == pivot) equal.push(num);
         else greater.push(num);
     }
-    return [...smaller, ...equal, ...greater];
+    return smaller.concat(equal, greater);
 };
