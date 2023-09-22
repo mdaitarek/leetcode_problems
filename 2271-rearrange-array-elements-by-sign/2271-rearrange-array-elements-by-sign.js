@@ -3,7 +3,7 @@
  * @return {number[]}
  */
 var rearrangeArray = function(nums) {
-    const result = [];
+    const result = new Array(nums.length);
     let positive = 0, negative = 1;
     for(let i=0; i<nums.length; i++){
         if(nums[i] > 0){
