@@ -5,10 +5,10 @@
  */
 var pivotArray = function(nums, pivot) {
     const smaller = [], equal = [], greater = [];
-    for(const num of nums){
-        if(num < pivot) smaller.push(num);
-        else if(num == pivot) equal.push(num);
-        else greater.push(num);
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] < pivot) smaller.push(nums[i]);
+        else if(nums[i] == pivot) equal.push(nums[i]);
+        else greater.push(nums[i]);
     }
     return smaller.concat(equal, greater);
 };
