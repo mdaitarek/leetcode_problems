@@ -8,9 +8,7 @@ class Solution {
            map.put(s.charAt(i), i);
         }
         while(end < s.length()){
-            int lastIndex = map.get(s.charAt(end));
-            if(lastIndex > endIndex)
-                endIndex = lastIndex;
+            endIndex = Math.max( map.get(s.charAt(end)), endIndex);
             if(endIndex == end){
                 labels.add((end - start + 1));
                 start = end + 1;
