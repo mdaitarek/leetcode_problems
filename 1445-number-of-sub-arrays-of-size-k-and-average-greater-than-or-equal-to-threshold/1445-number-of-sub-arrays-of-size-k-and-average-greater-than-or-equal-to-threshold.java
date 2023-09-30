@@ -7,8 +7,7 @@ class Solution {
             count++;
 
         for(int i=k; i<arr.length; i++){
-            windowSum-=arr[i-k];
-            windowSum+=arr[i];
+            windowSum+=(arr[i]-arr[i-k]);
             if((windowSum/k) >= threshold) 
                 count++;
         }
