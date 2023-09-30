@@ -1,13 +1,24 @@
 class Solution {
     public int countGoodSubstrings(String s) {
-        int count=0;
-
-        for(int i=0;i<s.length()-2;i++){
-            if((s.charAt(i)!=s.charAt(i+1))&&(s.charAt(i)!=s.charAt(i+2))&&(s.charAt(i+2)!=s.charAt(i+1))){
+        int count = 0;
+        LinkedHashSet<Character> set = new LinkedHashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (set.size() != 3) {
+                while (!set.add(s.charAt(i))) {
+                    set.remove(set.iterator().next());
+                }
+            }
+            else {
                 count++;
+                set.remove(set.iterator().next());
+                while (!set.add(s.charAt(i))) {
+                    set.remove(set.iterator().next());
+                }
             }
         }
+        if (set.size() == 3) {
+            count++;
+        }
         return count;
-
     }
 }
