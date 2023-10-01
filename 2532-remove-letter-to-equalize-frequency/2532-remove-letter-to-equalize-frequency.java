@@ -1,28 +1,32 @@
 class Solution {
     public boolean equalFrequency(String word) {
-        int[] count = new int[26];
-        for (char c : word.toCharArray()) {
-            count[c - 'a']++;
-        }
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        for (int num : count) {
-            if (num == 0) {
-                continue;
+       int[] freq= new int[26];
+        for(char c : word.toCharArray()) freq[c - 'a']++;
+        
+        for(char c : word.toCharArray()){
+            freq[c - 'a']--; //as we have asked to delete exactly one char, so we will decrease freq by one for all
+                             //chars and will check if after decreasing, the freqs of all chars are same or not, If
+                             //not return false otherwise true;
+            
+            if(check(freq)){ // freqs are same no need to check further return true;
+                return true;
             }
-            int freq = map.getOrDefault(num, 0);
-            map.put(num, freq + 1);
+            freq[c - 'a']++; // we are here cause the earlier char freq is not same to other freqs. restore that char freq and check for next char.
         }
-        if (map.size() == 2 && map.firstKey() + 1 == map.lastKey() && map.get(map.lastKey()) == 1) {
-            return true;
-        }
-        if (map.size() == 2 && map.firstKey() == 1 && map.get(map.firstKey()) == 1) {
-            return true;
-        }
-        if (map.size() == 1) {
-             if (map.firstKey() == 1 || map.get(map.firstKey()) == 1) {
-                 return true;
-             }
-        } 
         return false;
+    }
+    
+    public boolean check(int[] freq){
+        int count = 0;
+        
+        for(int f : freq){
+            if(f == 0) continue;
+            else if(count == 0){
+                count = f;
+            }else if(count == f) continue;
+            else return false;
+        }
+        
+        return true;
     }
 }
