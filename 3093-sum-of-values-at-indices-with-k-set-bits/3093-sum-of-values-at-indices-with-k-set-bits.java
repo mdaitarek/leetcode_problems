@@ -1,17 +1,18 @@
 class Solution {
-    public int noOfBits(int index){
+    public boolean vaildIndex(int index, int k){
         int count = 0;
         while(index >0){
             if(index%2 == 1) count++;
+            if(count > k) return false;
             index/=2;
         }
 
-        return count;
+        return count == k;
     }
     public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
         int sum = 0;
         for(int i=0; i<nums.size(); i++){
-            if(noOfBits(i) == k) sum+=nums.get(i);
+            if(vaildIndex(i,k)) sum+=nums.get(i);
         }
 
         return sum;
