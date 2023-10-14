@@ -23,8 +23,8 @@ class Solution {
 
         while(currNode.next != null){
             ListNode nextNode = currNode.next;
-            int gcd = gcd(currNode.val, nextNode.val);
-            ListNode node = new ListNode(gcd);
+            // int gcd = gcd(currNode.val, nextNode.val);
+            ListNode node = new ListNode(gcd(currNode.val, nextNode.val));
             node.next = currNode.next;
             currNode.next = node;
             currNode = nextNode;
