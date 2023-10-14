@@ -9,15 +9,11 @@
  * }
  */
 class Solution {
-    public int gcd(int n1, int n2){
-        while(n1!=n2){
-            if(n1 > n2)
-                n1 -= n2;
-            else
-                n2 -= n1;
+    public int gcd(int a, int b){
+        if(b==0){
+            return a;
         }
-
-        return n1;
+        return gcd(b, a%b);
     }
 
     public ListNode insertGreatestCommonDivisors(ListNode head) {
