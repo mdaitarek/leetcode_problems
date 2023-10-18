@@ -10,16 +10,16 @@
  */
 class Solution {
     public int pairSum(ListNode head) {
-        Stack<Integer> stack = new Stack<Integer>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
         ListNode tempHead = head;
         int n = 0, max = 0;
         while(tempHead != null){
-            stack.push(tempHead.val);
+            list.add(tempHead.val);
             n++;
             tempHead = tempHead.next;
         }
         for(int i=0; i<n/2; i++){
-            max = Math.max(max, (head.val + stack.pop()));
+            max = Math.max(max, (head.val + list.get(n-1-i)));
             head = head.next;
         }
 
