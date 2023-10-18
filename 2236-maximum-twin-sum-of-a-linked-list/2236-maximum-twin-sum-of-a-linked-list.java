@@ -1,27 +1,28 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public int pairSum(ListNode head) {
-        ArrayList<Integer> ll=new ArrayList<>();
-        ListNode temp=head;
-        while(temp!=null){
-            ll.add(temp.val);
-            temp=temp.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        int count = 0;
+        //get middle element and calculate the size upto middle
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            count++;
         }
-        int max=Integer.MIN_VALUE;
-        for(int i=0;i<ll.size()/2;i++){
-            int twinsum=ll.get(i)+ll.get(ll.size()-1-i);
-            if(twinsum>max){
-                max=twinsum;
-            }
+        //Create an array of size count
+        int arr[] = new int[count];
+        //initailize a pointer i = 0 which points to the first element in the array
+        int i = 0;
+        int max = Integer.MIN_VALUE;
+        while(count != 0){
+            arr[i] += head.val;
+            arr[count-1] += slow.val;
+            head = head.next;
+            slow = slow.next;
+            max = Math.max(max,arr[i]);
+            max = Math.max(max,arr[count-1]);
+            i++;
+            count--;
         }
         return max;
     }
