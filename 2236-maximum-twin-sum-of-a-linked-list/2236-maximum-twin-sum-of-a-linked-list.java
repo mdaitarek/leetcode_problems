@@ -2,27 +2,25 @@ class Solution {
     public int pairSum(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        int count = 0;
-        //get middle element and calculate the size upto middle
-        while(fast != null && fast.next != null){
+        int max=0;
+        //finding the middle node
+        while(fast!=null && fast.next!=null) {
             slow = slow.next;
             fast = fast.next.next;
-            count++;
         }
-        //Create an array of size count
-        int arr[] = new int[count];
-        //initailize a pointer i = 0 which points to the first element in the array
-        int i = 0;
-        int max = Integer.MIN_VALUE;
-        while(count != 0){
-            arr[i] += head.val;
-            arr[count-1] += slow.val;
+        //reverse linkedlist from middle
+        ListNode prev=null , next;
+        while(slow!=null) {
+            next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+        //sum up the nodes and finding the maxValue
+        while(prev!=null) {
+            max = Math.max(max,(head.val + prev.val));
+            prev = prev.next;
             head = head.next;
-            slow = slow.next;
-            max = Math.max(max,arr[i]);
-            max = Math.max(max,arr[count-1]);
-            i++;
-            count--;
         }
         return max;
     }
