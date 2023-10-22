@@ -1,36 +1,32 @@
 class Solution {
     public ListNode removeNodes(ListNode head) {
-        ListNode cur = head;
-        List<ListNode> list = new ArrayList<>();
-        while (cur != null) {
-            list.add(cur);
-            cur = cur.next;
-        }
-        int max = 0;
-        int[] arr = new int[list.size()];
-        //finding max from the end to include values into result
-        for (int i = list.size() - 1; i >= 0; i--) {
-            if (max <= list.get(i).val) {
-                arr[i] = 1;
-                max = list.get(i).val;
+        Stack<Integer> stack = new Stack();
+        ListNode rev = reverse(head);
+        while(rev != null) {
+            if(stack.isEmpty() || (!stack.isEmpty() && rev.val >= stack.peek())) {
+                stack.push(rev.val);
             }
+            rev = rev.next;
         }
-        boolean headSet = false;
-        cur = head;
-        //adding nodes to the result
-        for (int i = 0; i < list.size(); i++) {
-            if (arr[i] == 1) {
-                if (!headSet) {
-                    headSet = true;
-                    head = list.get(i);
-                    cur = head;
-                } else {
-                    cur.next = list.get(i);
-                    cur = cur.next;
-                }
-            }
+        ListNode res = new ListNode();
+        ListNode r = res;
+        while(!stack.isEmpty()) {
+            r.next = new ListNode(stack.pop());
+            r = r.next;
         }
-        cur.next = null;
-        return head;
+        return res.next;
+    }
+
+    ListNode reverse(ListNode head) {
+        ListNode curr = head;
+        ListNode prev = null;
+        ListNode next;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 }
