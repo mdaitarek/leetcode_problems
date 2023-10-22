@@ -10,10 +10,8 @@
  */
 class Solution {
     public ListNode removeNodes(ListNode head) {
-        if(head == null || head.next == null) return head;
-        ListNode node = removeNodes(head.next);
-        if(node.val > head.val) return node;
-        head.next = node;
-        return head;
+        if (head == null) return null;
+        head.next = removeNodes(head.next);
+        return head.next != null && head.val < head.next.val ? head.next : head;
     }
 }
